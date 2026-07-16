@@ -19,6 +19,7 @@ func NewMinIOStorage(l *slog.Logger, c *minio.Client, b string, ctx context.Cont
 	fmt.Println("1", c)
 	exists, err := c.BucketExists(ctx, b)
 	if err != nil {
+		fmt.Println(err)
 		return nil, err
 	}
 	fmt.Println("2")
