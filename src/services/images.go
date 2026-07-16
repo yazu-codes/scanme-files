@@ -31,6 +31,7 @@ func (s *Images) Create(
 	ctx context.Context,
 	file io.Reader,
 	filename string,
+	menuId string,
 ) (*model.Image, error) {
 
 	id := uuid.New().String()
@@ -49,6 +50,7 @@ func (s *Images) Create(
 	image := model.Image{
 		UUID:       id,
 		StorageKey: key,
+		MenuID:     menuId,
 	}
 
 	if err := s.repository.Create(&image); err != nil {

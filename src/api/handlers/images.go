@@ -19,6 +19,13 @@ func NewImages(service *services.Images, logger *slog.Logger) *Images {
 
 func (i *Images) AddImage(c *gin.Context) {
 	i.logger.Info("ADDING IMAGE")
+
+	menuID := c.PostForm("menu_id")
+	if menuID == "" {
+		c.JSON(400, gin.H{"error": "missing menu id"})
+		return
+	}
+
 	file, header, err := c.Request.FormFile("image")
 	if err != nil {
 		c.JSON(400, gin.H{"error": "missing image"})
@@ -32,6 +39,7 @@ func (i *Images) AddImage(c *gin.Context) {
 		c.Request.Context(),
 		file,
 		header.Filename,
+		menuID,
 	)
 
 	if err != nil {
