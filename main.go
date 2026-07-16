@@ -56,7 +56,9 @@ func main() {
 		logger.Error(err.Error())
 	}
 
+	fmt.Println("Will be printing endpoint url")
 	fmt.Println(storage.Client.EndpointURL().String())
+	fmt.Println("Printed endpoint url")
 
 	db := db.NewDatabase(config.Db.DSN(), logger)
 	db.Connect()
