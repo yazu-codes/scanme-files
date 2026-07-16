@@ -17,6 +17,7 @@ func NewImages(service *services.Images, logger *slog.Logger) *Images {
 }
 
 func (i *Images) AddImage(c *gin.Context) {
+	i.logger.Info("ADDING IMAGE")
 	file, header, err := c.Request.FormFile("image")
 	if err != nil {
 		c.JSON(400, gin.H{"error": "missing image"})
@@ -24,6 +25,8 @@ func (i *Images) AddImage(c *gin.Context) {
 	}
 	defer file.Close()
 
+	i.logger.Info("FOUND IMAGE")
+	i.logger.Info("ADDING METADATA FOR IMAGE")
 	created, err := i.service.Create(
 		c.Request.Context(),
 		file,
