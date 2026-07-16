@@ -19,7 +19,7 @@ func NewConfigReader() *ConfigReader {
 }
 
 func (c *ConfigReader) Setup() {
-	config := os.Getenv("CONFIG_YAML")
+	config := os.Getenv("CONFIG_YAML_FILES")
 	if config != "" {
 		fmt.Println("CONFIG_YAML environment variable is set. Writing to config.yaml.")
 		err := os.WriteFile("./configs/config.yaml", []byte(config), 0600)
