@@ -32,7 +32,7 @@ func (c *ConfigReader) Setup() {
 
 	viper.SetConfigName("config")
 	viper.SetConfigType("yaml")
-	viper.AddConfigPath("./configs") // current directory
+	viper.AddConfigPath("configs") // current directory
 
 	if err := viper.ReadInConfig(); err != nil {
 		log.Fatalf("failed to read config: %v", err)
