@@ -68,6 +68,7 @@ func (i *Images) GetImagesByMenuId(c *gin.Context) {
 
 	images, err := i.service.GetByMenuId(menuID)
 	if err != nil {
+		i.logger.Info(err.Error())
 		c.JSON(http.StatusInternalServerError, gin.H{"message": "couldn't fetch images"})
 		return
 	}
