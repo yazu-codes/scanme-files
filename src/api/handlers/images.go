@@ -60,7 +60,7 @@ func (i *Images) GetImages(c *gin.Context) {
 }
 
 func (i *Images) GetImagesByMenuId(c *gin.Context) {
-	menuID := c.Param("menuId")
+	menuID := c.Param("menu_id")
 	if menuID == "" {
 		c.JSON(http.StatusBadRequest, gin.H{"message": "menu_id is required"})
 		return
