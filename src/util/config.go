@@ -76,7 +76,7 @@ func (c *ConfigReader) Setup() {
 	c.MinIO.Endpoint = viper.GetString("minio.endpoint")
 	c.MinIO.AccessKey = viper.GetString("minio.access_key")
 	c.MinIO.SecretKey = viper.GetString("minio.secret_key")
-	c.MinIO.UseSSL = viper.GetBool("minio.usessl")
+	c.MinIO.UseSSL = viper.GetBool("minio.use_ssl")
 }
 
 type DB struct {
