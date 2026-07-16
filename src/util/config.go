@@ -24,6 +24,7 @@ func (c *ConfigReader) Setup() {
 		fmt.Println("CONFIG_YAML environment variable is set. Writing to config.yaml.")
 		err := os.WriteFile("./configs/config.yaml", []byte(config), 0600)
 		if err != nil {
+			fmt.Println("Error writing file.")
 			log.Fatal(err)
 		}
 	} else {
