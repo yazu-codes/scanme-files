@@ -25,6 +25,7 @@ func (c *ConfigReader) Setup() {
 
 	configPath := filepath.Join("configs", "config.yaml")
 
+	fmt.Println("Making the directory for config")
 	err := os.MkdirAll(filepath.Dir(configPath), 0755)
 	if err != nil {
 		log.Fatal(err)
@@ -42,6 +43,7 @@ func (c *ConfigReader) Setup() {
 			fmt.Println("Error writing file.")
 			panic(err)
 		}
+		fmt.Println("Wrote to config")
 	} else {
 		fmt.Println("CONFIG_YAML environment variable is not set. Using existing config.yaml.")
 	}
@@ -53,6 +55,8 @@ func (c *ConfigReader) Setup() {
 	if err := viper.ReadInConfig(); err != nil {
 		log.Fatalf("failed to read config: %v", err)
 	}
+
+	fmt.Println("config read successfully")
 
 	// -----------------------
 	// Extract values
