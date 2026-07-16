@@ -16,7 +16,7 @@ type MinIOStorage struct {
 }
 
 func NewMinIOStorage(l *slog.Logger, c *minio.Client, b string, ctx context.Context) (*MinIOStorage, error) {
-	fmt.Println("1")
+	fmt.Println("1", c)
 	exists, err := c.BucketExists(ctx, b)
 	if err != nil {
 		return nil, err
