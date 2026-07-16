@@ -54,6 +54,7 @@ func main() {
 
 	storage, err := storage.NewMinIOStorage(logger, client, config.MinIO.Bucket, ctx)
 	if err != nil {
+		panic(err)
 		logger.Error(err.Error())
 	}
 
