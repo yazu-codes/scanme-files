@@ -74,11 +74,11 @@ func main() {
 
 	imagesHandler := handlers.NewImages(imagesService, logger)
 
-	server.Router.POST("/", imagesHandler.AddImage)
-	server.Router.POST("/bulk", imagesHandler.AddImages)
-	server.Router.GET("/", imagesHandler.GetImages)
-	server.Router.GET("/:id", imagesHandler.GetImageById)
-	server.Router.DELETE("/:id", imagesHandler.DeleteImageById)
+	server.Router.POST("/images", imagesHandler.AddImage)
+	server.Router.POST("/images/bulk", imagesHandler.AddImages)
+	server.Router.GET("/images", imagesHandler.GetImages)
+	server.Router.GET("/images/:id", imagesHandler.GetImageById)
+	server.Router.DELETE("/images/:id", imagesHandler.DeleteImageById)
 
 	server.Run()
 }
