@@ -32,7 +32,7 @@ func main() {
 
 	fmt.Println(config.MinIO.AccessKey)
 	fmt.Println(config.MinIO.SecretKey)
-	fmt.Println("Use SSL:", config.Db.Sslmode)
+	fmt.Println("Use SSL:", config.MinIO.UseSSL)
 
 	client, err := minio.New(
 		config.MinIO.Endpoint,
