@@ -16,11 +16,14 @@ type MinIOStorage struct {
 }
 
 func NewMinIOStorage(l *slog.Logger, c *minio.Client, b string, ctx context.Context) (*MinIOStorage, error) {
+	fmt.Println("1")
 	exists, err := c.BucketExists(ctx, b)
 	if err != nil {
 		return nil, err
 	}
+	fmt.Println("2")
 	if !exists {
+		fmt.Println("3")
 		err = c.MakeBucket(
 			ctx,
 			b,
@@ -31,6 +34,7 @@ func NewMinIOStorage(l *slog.Logger, c *minio.Client, b string, ctx context.Cont
 			return nil, err
 		}
 
+		fmt.Println("4")
 		// Make bucket publicly readable
 		policy := fmt.Sprintf(`{
 			"Version": "2012-10-17",
@@ -50,6 +54,7 @@ func NewMinIOStorage(l *slog.Logger, c *minio.Client, b string, ctx context.Cont
 			]
 		}`, b)
 
+		fmt.Println("5")
 		err = c.SetBucketPolicy(
 			ctx,
 			b,
@@ -59,6 +64,7 @@ func NewMinIOStorage(l *slog.Logger, c *minio.Client, b string, ctx context.Cont
 		if err != nil {
 			return nil, err
 		}
+		fmt.Println("6")
 	}
 
 	return &MinIOStorage{logger: l, Client: c, bucket: b}, nil
