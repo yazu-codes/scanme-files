@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"path/filepath"
 
 	"github.com/spf13/viper"
 )
@@ -21,9 +22,22 @@ func NewConfigReader() *ConfigReader {
 func (c *ConfigReader) Setup() {
 	config := os.Getenv("CONFIG_YAML_FILES")
 	// config = "a"
+
+	configPath := filepath.Join("configs", "config.yaml")
+
+	err := os.MkdirAll(filepath.Dir(configPath), 0755)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	// err = os.WriteFile(configPath, []byte(config), 0600)
+	// if err != nil {
+	// 	log.Fatal(err)
+	// }
+
 	if config != "" {
 		fmt.Println("CONFIG_YAML environment variable is set. Writing to config.yaml.")
-		err := os.WriteFile("configs/config.yaml", []byte(config), 0600)
+		err := os.WriteFile(configPath, []byte(config), 0600)
 		if err != nil {
 			fmt.Println("Error writing file.")
 			panic(err)
