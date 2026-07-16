@@ -22,3 +22,11 @@ func (i *Images) Create(image *model.Image) error {
 	}
 	return nil
 }
+
+func (i *Images) GetByMenuId(menuId string) (model.Images, error) {
+	var images []model.Image
+	if err := i.db.Connection.Where("menu_id = ?", menuId).Find(&images).Error; err != nil {
+		return nil, err
+	}
+	return images, nil
+}

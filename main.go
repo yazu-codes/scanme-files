@@ -77,7 +77,7 @@ func main() {
 	server.Router.POST("/images", imagesHandler.AddImage)
 	server.Router.POST("/images/bulk", imagesHandler.AddImages)
 	server.Router.GET("/images", imagesHandler.GetImages)
-	server.Router.GET("/images/:id", imagesHandler.GetImageById)
+	server.Router.GET("/images/:menu_id", imagesHandler.GetImagesByMenuId)
 	server.Router.DELETE("/images/:id", imagesHandler.DeleteImageById)
 
 	server.Run()

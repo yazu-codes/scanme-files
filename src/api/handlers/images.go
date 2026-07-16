@@ -2,6 +2,7 @@ package handlers
 
 import (
 	"log/slog"
+	"net/http"
 
 	"github.com/gin-gonic/gin"
 	"github.com/yazu-codes/scanme-files.git/src/services"
@@ -50,8 +51,20 @@ func (i *Images) GetImages(c *gin.Context) {
 	i.logger.Info("Get Images Handler reached.")
 }
 
-func (i *Images) GetImageById(c *gin.Context) {
-	i.logger.Info("Get Image by Id Handler reached.")
+func (i *Images) GetImagesByMenuId(c *gin.Context) {
+	menuID := c.Param("menuId")
+	if menuID == "" {
+		c.JSON(http.StatusBadRequest, gin.H{"message": "menu_id is required"})
+		return
+	}
+
+	images, err := i.service.GetByMenuId(menuID)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"message": "couldn't fetch images"})
+		return
+	}
+
+	c.JSON(http.StatusOK, images)
 }
 
 func (i *Images) DeleteImageById(c *gin.Context) {

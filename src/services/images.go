@@ -57,3 +57,12 @@ func (s *Images) Create(
 
 	return &image, nil
 }
+
+func (s *Images) GetByMenuId(menuId string) ([]model.ImageDTO, error) {
+	images, err := s.repository.GetByMenuId(menuId)
+	if err != nil {
+		return nil, err
+	}
+
+	return images.ToDTOs(), nil
+}
