@@ -46,6 +46,7 @@ func (i *Images) AddImages(c *gin.Context) {
 }
 
 func (i *Images) GetImages(c *gin.Context) {
+	c.JSON(200, "Hiii")
 	i.logger.Info("Get Images Handler reached.")
 }
 
