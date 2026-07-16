@@ -22,7 +22,7 @@ func (c *ConfigReader) Setup() {
 	config := os.Getenv("CONFIG_YAML_FILES")
 	if config != "" {
 		fmt.Println("CONFIG_YAML environment variable is set. Writing to config.yaml.")
-		err := os.WriteFile("/configs/config.yaml", []byte(config), 0600)
+		err := os.WriteFile("./configs/config.yaml", []byte(config), 0600)
 		if err != nil {
 			log.Fatal(err)
 		}
@@ -32,7 +32,7 @@ func (c *ConfigReader) Setup() {
 
 	viper.SetConfigName("config")
 	viper.SetConfigType("yaml")
-	viper.AddConfigPath("/configs") // current directory
+	viper.AddConfigPath("./configs") // current directory
 
 	if err := viper.ReadInConfig(); err != nil {
 		log.Fatalf("failed to read config: %v", err)
