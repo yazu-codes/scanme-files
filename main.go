@@ -81,4 +81,6 @@ func main() {
 	server.Router.DELETE("/images/:id", imagesHandler.DeleteImageById)
 
 	server.Run()
+
+	// https://items.tapmy.menu/menu-items/images/1008e2b8-c943-4314-9282-65acfbbc4abc.jpg
 }
