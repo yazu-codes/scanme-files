@@ -7,6 +7,7 @@ import (
 	"image"
 	"io"
 	"log/slog"
+	"path/filepath"
 
 	"github.com/disintegration/imaging"
 	"github.com/google/uuid"
@@ -70,8 +71,9 @@ func (s *Images) Create(
 	id := uuid.New().String()
 
 	key := fmt.Sprintf(
-		"/images/%s.jpg",
+		"/images/%s%s",
 		id,
+		filepath.Ext(filename),
 	)
 
 	err = s.storage.Save(ctx, key, file)
